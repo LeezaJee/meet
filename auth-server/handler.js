@@ -39,12 +39,9 @@ const oAuth2Client = new OAuth2(client_id, client_secret, redirect_uris[0]);
 
 // 1st serverless function to generate a URL so users can log in with Google and be authorized to see calendar
 module.exports.getAuthURL = async () => {
-  /**
-   *
-   * Scopes array passed to the `scope` option. Any scopes passed must be enabled in the
+  /* Scopes array passed to the `scope` option. Any scopes passed must be enabled in the
    * "OAuth consent screen" settings in your project on your Google Console. Also, any passed
    *  scopes are the ones users will see when the consent screen is displayed to them.
-   *
    */
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
@@ -62,7 +59,6 @@ module.exports.getAuthURL = async () => {
   };
 };
 
-// 2nd serverless function to get an access token
 module.exports.getAccessToken = async (event) => {
   // The values used to instantiate the OAuthClient are at the top of the file
   const oAuth2Client = new OAuth2(client_id, client_secret, redirect_uris[0]);
@@ -89,17 +85,13 @@ module.exports.getAccessToken = async (event) => {
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify({ token }),
+        body: JSON.stringify(token),
       };
     })
     .catch((err) => {
-      // Handle error
       console.error(err);
       return {
         statusCode: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
         body: JSON.stringify(err),
       };
     });
