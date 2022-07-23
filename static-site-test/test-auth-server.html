@@ -84,7 +84,8 @@
             return response.json();
           })
           .then(function (json) {
-            accessTokenElement.innerText = JSON.stringify(json.token);
+            console.log(json);
+            accessTokenElement.innerText = JSON.stringify(json);
           });
       };
       // --------------------- END OF STEP 2
