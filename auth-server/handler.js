@@ -59,6 +59,7 @@ module.exports.getAuthURL = async () => {
   };
 };
 
+//2nd serverless function to get an access token
 module.exports.getAccessToken = async (event) => {
   // The values used to instantiate the OAuthClient are at the top of the file
   const oAuth2Client = new OAuth2(client_id, client_secret, redirect_uris[0]);
@@ -86,6 +87,54 @@ module.exports.getAccessToken = async (event) => {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(token),
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err),
+      };
+    });
+};
+
+// 3rd serverless function to get Google calendar events
+module.exports.getCalendarEvents = (event) => {
+  // The values used to instantiate the OAuthClient are at the top of the file
+  const oAuth2Client = new OAuth2(client_id, client_secret, redirect_uris[0]);
+  // Decode authorization code extracted from the URL query
+  const access_token = decodeURIComponent(
+    `${event.pathParameters.access_token}`
+  );
+
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((resolve, reject) => {
+    // this method will get a list of events from the “fullstackwebdev” Google calendar using oAuth2Client authentication
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    );
+  })
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ events: results.data.items }),
       };
     })
     .catch((err) => {
