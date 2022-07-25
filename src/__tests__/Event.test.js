@@ -24,3 +24,9 @@ describe("<Event /> component", () => {
     expect(EventWrapper.state("buttonCollapsed")).toBe(true);
   });
 
+  // TEST 4
+  test("render event description", () => {
+    EventWrapper.setState({ buttonCollapsed: false });
+    expect(EventWrapper.find(".description")).toHaveLength(1);
+  });
+
