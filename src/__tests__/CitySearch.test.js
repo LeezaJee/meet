@@ -41,4 +41,23 @@ describe("<CitySearch /> component", () => {
     expect(CitySearchWrapper.state("query")).toBe("Berlin");
   });
 
+  // verifies that the list of suggestions rendered matches the list of suggestions in the component state
+  test("render list of suggestions correctly", () => {
+    // contains the set of distinct locations from the mockData events list
+    const locations = extractLocations(mockData);
+    // sets the suggestions state to the full list of mock locations
+    CitySearchWrapper.setState({ suggestions: locations });
+    // then compares the number of rendered suggestions to the number of suggestions in the state of CitySearch
+    const suggestions = CitySearchWrapper.state("suggestions");
+    expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(
+      suggestions.length + 1
+    );
+    // loops through all the suggestions and compares the items in suggestions one by one
+    for (let i = 0; i < suggestions.length; i += 1) {
+      expect(CitySearchWrapper.find(".suggestions li").at(i).text()).toBe(
+        suggestions[i]
+      );
+    }
+  });
+
 });
