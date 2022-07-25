@@ -9,6 +9,20 @@ class CitySearch extends Component {
     suggestions: [],
   };
 
+  // changes the state of query upon changing the value of the input field
+  // filters the state of suggestions and uses the result as the state’s new value
+  handleInputChanged = (event) => {
+    const value = event.target.value;
+    // this.props.locations within the function because it'll be passed from the App component later
+    const suggestions = this.props.locations.filter((location) => {
+      return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
+    });
+    this.setState({
+      query: value,
+      suggestions,
+    });
+  };
+
   render() {
     return (
       <div className="CitySearch">
