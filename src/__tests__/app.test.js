@@ -14,7 +14,7 @@ describe("<App /> component", () => {
 
   // TEST 1
   // checks if an EventList component exists in <App/>
-  test("render EventList component", () => {
+  test("render list of events", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
 
@@ -25,4 +25,7 @@ describe("<App /> component", () => {
   });
 
   // TEST 3
+  test("render number of events", () => {
+    expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
+  });
 });
