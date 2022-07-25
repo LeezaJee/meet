@@ -36,3 +36,8 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".creator")).toHaveLength(1);
   });
 
+  // TEST 6
+  test("render event location", () => {
+    expect(EventWrapper.find(".location")).toHaveLength(1);
+  });
+
