@@ -5,23 +5,29 @@ import { mockData } from "../mock-data";
 import { extractLocations } from "../api";
 
 describe("<CitySearch />", () => {
+  // added superset of all locations as variable and passed it to the shallow CitySearch component
   let locations, CitySearchWrapper;
+  // CitySearchWrapper is defined only once for all tests in beforeAll() function
   beforeAll(() => {
     locations = extractLocations(mockData);
     CitySearchWrapper = shallow(<CitySearch locations={locations} />);
   });
 
+  // TEST 1
   // checks whether an element with the class name city (textbox) exists within the CitySearchWrapper
   test("render text input", () => {
     expect(CitySearchWrapper.find(".city")).toHaveLength(1);
   });
 
+  // TEST 2
   // checks for the existence of an element with the class name suggestions (<li>)
   test("render a list of suggestions", () => {
     expect(CitySearchWrapper.find(".suggestions")).toHaveLength(1);
   });
 
-  test("render text input correctly", () => {
+  // TEST 3
+  // checks if the input field's value prop is equal to what’s in the CitySearch query state
+  test("renders text input correctly", () => {
     // setting const to the query from the CitySearch state (what the user types into the textbox)
     const query = CitySearchWrapper.state("query");
     // compares the value prop of each element that has the class "city" found within the CitySearch component
@@ -30,6 +36,8 @@ describe("<CitySearch />", () => {
     expect(CitySearchWrapper.find(".city").prop("value")).toBe(query);
   });
 
+  // TEST 4
+  // checks if a user is able to type in a query and if state updates automatically to reflect this
   test("change state when text input changes", () => {
     // query state has been set to Munich
     CitySearchWrapper.setState({
@@ -44,6 +52,7 @@ describe("<CitySearch />", () => {
     expect(CitySearchWrapper.state("query")).toBe("Berlin");
   });
 
+  // TEST 5
   // verifies that the list of suggestions rendered matches the list of suggestions in the component state
   test("render list of suggestions correctly", () => {
     // contains the set of distinct locations from the mockData events list
@@ -63,6 +72,9 @@ describe("<CitySearch />", () => {
     }
   });
 
+  // TEST 6
+  // checks if state of suggestions only has cities that match the locations
+  // after filtering the locations prop against what’s in the state of query
   test("suggestion list match the query when changed", () => {
     // states for both query and suggestions have been emptied
     CitySearchWrapper.setState({ query: "", suggestions: [] });
@@ -77,6 +89,7 @@ describe("<CitySearch />", () => {
     expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
   });
 
+  // TEST 7
   // checks whether the value of query’s state changes when the user clicks on a suggestion
   test("selecting a suggestion should change query state", () => {
     CitySearchWrapper.setState({
