@@ -58,3 +58,10 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".btn-details")).toHaveLength(1);
   });
 
+  // TEST 10
+  test("show list of event details when expanded", () => {
+    EventWrapper.setState({ buttonCollapsed: true });
+    EventWrapper.find(".btn-details").simulate("click");
+    expect(EventWrapper.state("buttonCollapsed")).toBe(false);
+  });
+
