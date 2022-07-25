@@ -60,4 +60,18 @@ describe("<CitySearch /> component", () => {
     }
   });
 
+  test("suggestion list match the query when changed", () => {
+    // states for both query and suggestions have been emptied
+    CitySearchWrapper.setState({ query: "", suggestions: [] });
+    // changing the value of query to “Berlin” through a simulated change event on the .city input field
+    CitySearchWrapper.find(".city").simulate("change", {
+      target: { value: "Berlin" },
+    });
+    const query = CitySearchWrapper.state("query");
+    const filteredLocations = locations.filter((location) => {
+      return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
+    });
+    expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
+  });
+
 });
