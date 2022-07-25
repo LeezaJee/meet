@@ -30,3 +30,9 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".description")).toHaveLength(1);
   });
 
+  // TEST 5
+  test("render event creator", () => {
+    EventWrapper.setState({ buttonCollapsed: false });
+    expect(EventWrapper.find(".creator")).toHaveLength(1);
+  });
+
