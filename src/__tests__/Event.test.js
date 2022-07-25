@@ -19,3 +19,8 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".summary")).toHaveLength(1);
   });
 
+  // TEST 3
+  test("default details window closed", () => {
+    expect(EventWrapper.state("buttonCollapsed")).toBe(true);
+  });
+
