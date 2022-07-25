@@ -23,6 +23,12 @@ class CitySearch extends Component {
     });
   };
 
+  handleItemClicked = (suggestion) => {
+    this.setState({
+      query: suggestion,
+    });
+  };
+
   render() {
     return (
       <div className="CitySearch">
