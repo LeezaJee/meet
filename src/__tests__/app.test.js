@@ -12,13 +12,17 @@ describe("<App /> component", () => {
     AppWrapper = shallow(<App />);
   });
 
+  // TEST 1
   // checks if an EventList component exists in <App/>
   test("render EventList component", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
 
+  // TEST 2
   // checks if an CitySearch component exists in <App/>
   test("render CitySearch component", () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   });
+
+  // TEST 3
 });
