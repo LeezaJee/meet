@@ -47,3 +47,9 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".start")).toHaveLength(1);
   });
 
+  // TEST 8
+  test("render event end", () => {
+    EventWrapper.setState({ buttonCollapsed: false });
+    expect(EventWrapper.find(".end")).toHaveLength(1);
+  });
+
