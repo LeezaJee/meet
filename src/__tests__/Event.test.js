@@ -9,3 +9,8 @@ describe("<Event /> component", () => {
     EventWrapper = shallow(<Event event={mockData[0]} />);
   });
 
+  // TEST 1
+  test("render event", () => {
+    expect(EventWrapper.find(".event-visible")).toHaveLength(1);
+  });
+
