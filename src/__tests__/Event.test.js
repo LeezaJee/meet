@@ -14,3 +14,8 @@ describe("<Event /> component", () => {
     expect(EventWrapper.find(".event-visible")).toHaveLength(1);
   });
 
+  // TEST 2
+  test("render event summary", () => {
+    expect(EventWrapper.find(".summary")).toHaveLength(1);
+  });
+
