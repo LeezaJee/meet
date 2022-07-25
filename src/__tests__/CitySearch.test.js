@@ -4,17 +4,18 @@ import CitySearch from "../CitySearch";
 import { mockData } from "../mock-data";
 import { extractLocations } from "../api";
 
+describe("<CitySearch />", () => {
+  beforeAll(() => {
+    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+  });
 
-describe("<CitySearch /> component", () => {
   // checks whether an element with the class name city (textbox) exists within the CitySearchWrapper
   test("render text input", () => {
-    const CitySearchWrapper = shallow(<CitySearch />);
     expect(CitySearchWrapper.find(".city")).toHaveLength(1);
   });
 
   // checks for the existence of an element with the class name suggestions (<li>)
-  test("renders a list of suggestions", () => {
-    const CitySearchWrapper = shallow(<CitySearch />);
+  test("render a list of suggestions", () => {
     expect(CitySearchWrapper.find(".suggestions")).toHaveLength(1);
   });
 
