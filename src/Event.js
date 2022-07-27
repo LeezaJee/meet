@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 class Event extends Component {
   state = {
-    buttonCollapsed: true, // 9
+    buttonCollapsed: true,
   };
 
   handleShowDetails() {
@@ -45,7 +45,7 @@ class Event extends Component {
           onClick={() => this.handleShowDetails()}
           className="btn-details"
         >
-          Details
+          Show Details
         </button>
       </div>
     );
