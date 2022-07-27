@@ -72,6 +72,20 @@ describe("<App /> integration", () => {
     AppWrapper.unmount();
   });
 
+  // INTEGRATION TEST 4
+  test('get list of all events when user selects "See all cities"', async () => {
+    const AppWrapper = mount(<App />);
+    const suggestionItems = AppWrapper.find(CitySearch).find(".suggestions li");
+    // test simulates a click on the last list item (which will always be “See all cities”)
+    await suggestionItems.at(suggestionItems.length - 1).simulate("click");
+    const allEvents = await getEvents();
+    // checks if the events state of the App component equals the list of all events
+    expect(AppWrapper.state("events")).toEqual(allEvents);
+    AppWrapper.unmount();
+  });
+});
+
+// ----------------- UNIT TESTING SCOPE -----------------
 describe("<App /> component", () => {
   let AppWrapper;
   // any code within a beforeAll() function will be executed before each and every one of the tests
