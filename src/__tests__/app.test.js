@@ -36,6 +36,42 @@ describe("<App /> integration", () => {
     AppWrapper.unmount();
   });
 
+  // INTEGRATION TEST 3
+  // always add async to a test’s callback function if it contains async code.
+  test("get list of events matching the city selected by the user", async () => {
+    const AppWrapper = mount(<App />);
+    const CitySearchWrapper = AppWrapper.find(CitySearch);
+    // locations is extracted from the events in MockData component
+    const locations = extractLocations(mockData);
+    // CitySearch's suggestions state has been set to have all available cities
+    CitySearchWrapper.setState({ suggestions: locations });
+    const suggestions = CitySearchWrapper.state("suggestions");
+    // holds the index of the selected suggestion from the suggestions array
+    // evaluates to an integer value ranging from 0 to suggestion.length - 1
+    // Math.random() used with Math.floor() can be used to return random integers
+    const selectedIndex = Math.floor(Math.random() * suggestions.length);
+    // once index is selected, it’s used to return the actual suggestion
+    // and then stored in the selectedCity variable
+    const selectedCity = suggestions[selectedIndex];
+    // click is mimicked by calling the handleItemClicked() method from CitySearch
+    // this is possible by calling instance() on the CitySearchWrapper
+    // selected suggestion/city has been passed to it
+    await CitySearchWrapper.instance().handleItemClicked(selectedCity);
+    // await => it's expected that handleItemClicked() will have async code that involves fetching the full list of events
+    // before filtering them down to the list of events that match the selected city
+    // getEvents = new API function which is mainly expected to get all the events from the API asynchronously
+    const allEvents = await getEvents();
+    // ist of all events is filtered against the selected location/city in order to find the events that have the same location
+    // stored in eventsToShow
+    const eventsToShow = allEvents.filter(
+      (event) => event.location === selectedCity
+    );
+    // test compares whether the state of events actually takes the same array as the events that resulted
+    // from the filtering process in the previous step
+    expect(AppWrapper.state("events")).toEqual(eventsToShow);
+    AppWrapper.unmount();
+  });
+
 describe("<App /> component", () => {
   let AppWrapper;
   // any code within a beforeAll() function will be executed before each and every one of the tests
