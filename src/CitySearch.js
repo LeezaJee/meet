@@ -7,6 +7,7 @@ class CitySearch extends Component {
   state = {
     query: "",
     suggestions: [],
+    showSuggestions: undefined,
   };
 
   // changes the state of query upon changing the value of the input field
