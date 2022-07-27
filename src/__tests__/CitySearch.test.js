@@ -94,11 +94,10 @@ describe("<CitySearch />", () => {
   // TEST 7
   // checks whether the value of query’s state changes when the user clicks on a suggestion
   test("selecting a suggestion should change query state", () => {
-    CitySearchWrapper.setState({
-      query: "Berlin",
+    CitySearchWrapper.find(".city").simulate("focus");
+    expect(CitySearchWrapper.state("showSuggestions")).toBe(true);
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({
+      display: "none",
     });
-    const suggestions = CitySearchWrapper.state("suggestions");
-    CitySearchWrapper.find(".suggestions li").at(0).simulate("click");
-    expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
   });
 });
