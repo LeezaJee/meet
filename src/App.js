@@ -22,6 +22,24 @@ class App extends Component {
     });
   }
 
+  // to avoid the component being mounted, tested, and unmounted before the getEvents API call inside componentDidMount() has finished
+  // update the state only if this.mounted is true
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  updateEvents = (location) => {
+    getEvents().then((events) => {
+      const locationEvents =
+        location === "all"
+          ? events
+          : events.filter((event) => event.location === location);
+      this.setState({
+        events: locationEvents,
+      });
+    });
+  };
+
   render() {
     return (
       <div className="App">
