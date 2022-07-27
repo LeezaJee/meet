@@ -79,19 +79,19 @@ describe("<App /> component", () => {
     AppWrapper = shallow(<App />);
   });
 
-  // TEST 1
+  // UNIT TEST 1
   // checks if an EventList component exists in <App/>
   test("render list of events", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
 
-  // TEST 2
+  // UNIT TEST 2
   // checks if an CitySearch component exists in <App/>
   test("render CitySearch component", () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   });
 
-  // TEST 3
+  // UNIT TEST 3
   test("render number of events", () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
