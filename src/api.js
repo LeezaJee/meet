@@ -2,6 +2,7 @@
 // temporarily storing functions
 import { mockData } from "./mock-data";
 import axios from "axios";
+import NProgress from "nprogress";
 
 // extracts event locations out of an array of events and removes duplicates
 export const extractLocations = (events) => {
