@@ -24,6 +24,18 @@ describe("<App /> integration", () => {
     // tests that use the same DOM will affect each other, so you need to “clean up” your DOM after each test
     AppWrapper.unmount();
   });
+
+  // INTEGRATION TEST 2
+  test('App passes "locations" state as a prop to CitySearch', () => {
+    const AppWrapper = mount(<App />);
+    const AppLocationsState = AppWrapper.state("locations");
+    expect(AppLocationsState).not.toEqual(undefined);
+    expect(AppWrapper.find(CitySearch).props().locations).toEqual(
+      AppLocationsState
+    );
+    AppWrapper.unmount();
+  });
+
 describe("<App /> component", () => {
   let AppWrapper;
   // any code within a beforeAll() function will be executed before each and every one of the tests
