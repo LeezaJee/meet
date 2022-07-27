@@ -10,6 +10,18 @@ class App extends Component {
     events: [],
     locations: [],
   };
+
+  // loads events when the app loads
+  // makes the API call and saves the initial data to state
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
+    });
+  }
+
   render() {
     return (
       <div className="App">
