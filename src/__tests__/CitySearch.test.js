@@ -10,7 +10,9 @@ describe("<CitySearch />", () => {
   // CitySearchWrapper is defined only once for all tests in beforeAll() function
   beforeAll(() => {
     locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+    CitySearchWrapper = shallow(
+      <CitySearch locations={locations} updateEvents={() => {}} />
+    );
   });
 
   // TEST 1
