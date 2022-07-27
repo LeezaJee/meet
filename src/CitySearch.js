@@ -46,7 +46,10 @@ class CitySearch extends Component {
             this.setState({ showSuggestions: true });
           }}
         />
-        <ul className="suggestions">
+        <ul
+          className="suggestions"
+          style={this.state.showSuggestions ? {} : { display: "none" }}
+        >
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
