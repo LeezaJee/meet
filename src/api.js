@@ -11,6 +11,18 @@ export const extractLocations = (events) => {
   return locations;
 };
 
+// takes the accessToken that has been found in localStorage and checks whether it’s valid or not
+// if it’s not, then user is sent to the Google Authorization screen
+const checkToken = async (accessToken) => {
+  const result = await fetch(
+    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
+  )
+    .then((res) => res.json())
+    .catch((error) => error.json());
+
+  return result;
+};
+
 export const getEvents = async () => {
   return mockData;
 };
