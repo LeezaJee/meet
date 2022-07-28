@@ -39,8 +39,32 @@ const removeQuery = () => {
   }
 };
 
+// if you’re using localhost, you return the mock data; otherwise, you use the real API
 export const getEvents = async () => {
-  return mockData;
+  NProgress.start();
+
+  if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
+    return mockData;
+  }
+
+  const token = await getAccessToken();
+
+  if (token) {
+    removeQuery(); // will remove the code from the URL once you’re finished with it
+    const url =
+      "https://v6n6jwhi1a.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" +
+      "/" +
+      token;
+    const result = await axios.get(url);
+    if (result.data) {
+      var locations = extractLocations(result.data.events);
+      localStorage.setItem("lastEvents", JSON.stringify(result.data));
+      localStorage.setItem("locations", JSON.stringify(locations));
+    }
+    NProgress.done();
+    return result.data.events;
+  }
 };
 
 export const getAccessToken = async () => {
