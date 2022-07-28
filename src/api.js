@@ -67,6 +67,9 @@ export const getEvents = async () => {
   }
 };
 
+// checks whether an access token was found
+// if no token is found (!accessToken), it checks for an authorization code
+// if no authorization code found (!code), user is automatically redirected to Google Authorization screen
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem("access_token");
 
