@@ -23,6 +23,22 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
+// checks whether there’s a path, then builds the URL with the current path
+// (or builds the URL without a path using window.history.pushState()
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pathname) {
+    var newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
+};
+
 export const getEvents = async () => {
   return mockData;
 };
