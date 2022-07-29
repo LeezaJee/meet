@@ -85,6 +85,16 @@ describe("<App /> integration", () => {
   });
 });
 
+// INTEGRATION TEST 5
+test("list of 32 events by default", async () => {
+  const AppWrapper = mount(<App />);
+  const allEvents = await getEvents();
+  expect(AppWrapper.state("numberOfEvents")).not.toEqual(undefined);
+  const sliceNumber = AppWrapper.state("numberOfEvents");
+  expect(AppWrapper.state("events")).toEqual(allEvents.slice(0, sliceNumber));
+  AppWrapper.unmount();
+});
+
 // ----------------- UNIT TESTING SCOPE -----------------
 describe("<App /> component", () => {
   let AppWrapper;
