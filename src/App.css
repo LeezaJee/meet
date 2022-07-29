@@ -1,4 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url("https://fonts.googleapis.com/css2?family=Play&display=swap");
+
+body {
+  background-color: #6a89cc !important;
+}
+
 .App {
   text-align: center;
   padding: 2% 5%;
@@ -6,6 +11,7 @@
 
 .App * {
   box-sizing: border-box;
+  font-family: "Play", sans-serif;
 }
 
 ul {
@@ -116,7 +122,7 @@ input[type="number"] {
 
 .numberOfEvents {
   width: 200px;
-  margin: 20px auto;
+  margin: 30px auto;
   text-align: center;
 }
 
@@ -196,6 +202,35 @@ input[type="number"] {
   font-size: 14px;
   letter-spacing: 0.2px;
   font-family: "Roboto";
+}
+
+.event-card {
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  float: inline-start;
+}
+
+.app-subtitle {
+  margin-bottom: 40px;
+}
+
+.event-number {
+  margin-top: 30px;
+}
+
+.btn-details {
+  width: 50%;
+  margin-top: 10px;
+}
+
+.creator {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.description {
+  margin-top: 30px;
 }
 
 @media only screen and (min-width: 992px) {
