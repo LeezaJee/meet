@@ -20,7 +20,11 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        let sliceNumber = this.state.numberOfEvents;
+        this.setState({
+          locations: extractLocations(events),
+          events: events.slice(0, sliceNumber),
+        });
       }
     });
   }
