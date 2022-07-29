@@ -57,12 +57,16 @@ class App extends Component {
 
   render() {
     return (
+      // passing states to components as a prop
       <div className="App">
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
-        <NumberOfEvents />
+        <NumberOfEvents
+          events={this.state.events}
+          updateEvents={this.updateEvents}
+        />
         <EventList events={this.state.events} />
       </div>
     );
