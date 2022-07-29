@@ -1,6 +1,7 @@
 // contains the actual events that will be rendered in the EventList component
 
 import React, { Component } from "react";
+import { Card, Button } from "react-bootstrap";
 
 class Event extends Component {
   state = {
@@ -38,15 +39,30 @@ class Event extends Component {
   render() {
     return (
       <div className="event-visible">
-        <h2 className="summary">{this.props.event.summary}</h2>
-        <h3 className="location">{this.props.event.location}</h3>
-        {this.collapsedEvent()}
-        <button
-          onClick={() => this.handleShowDetails()}
-          className="btn-details"
+        <Card
+          className="event-card"
+          bg="light"
+          border="dark"
+          style={{ width: "25rem" }}
         >
-          Show Details
-        </button>
+          <Card.Header as="h4">{this.props.event.summary}</Card.Header>
+          <Card.Body>
+            <Card.Text className="location">
+              {this.props.event.start.dateTime}
+            </Card.Text>
+            <Card.Text className="location">
+              {this.props.event.location}
+            </Card.Text>
+            {this.collapsedEvent()}
+            <Button
+              className="btn-details"
+              variant="warning"
+              onClick={() => this.handleShowDetails()}
+            >
+              Details
+            </Button>
+          </Card.Body>
+        </Card>
       </div>
     );
   }
