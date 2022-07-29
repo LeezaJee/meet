@@ -102,6 +102,15 @@ describe("<CitySearch />", () => {
   });
 
   // TEST 8
+  test("selecting CitySearch input reveals the suggestions list", () => {
+    CitySearchWrapper.find(".city").simulate("focus");
+    expect(CitySearchWrapper.state("showSuggestions")).toBe(true);
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({
+      display: "none",
+    });
+  });
+
+  // TEST 9
   // test for hiding the suggestions list whenever one of its items is clicked
   test("selecting a suggestion should hide the suggestions list", () => {
     CitySearchWrapper.setState({
