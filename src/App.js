@@ -10,6 +10,8 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
+    numberOfEvents: 32,
+    locationSelected: "all",
   };
 
   // loads events when the app loads
