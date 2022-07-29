@@ -39,12 +39,7 @@ class Event extends Component {
   render() {
     return (
       <div className="event-visible">
-        <Card
-          className="event-card"
-          bg="light"
-          border="dark"
-          style={{ width: "25rem" }}
-        >
+        <Card className="event-card" bg="light" border="dark">
           <Card.Header as="h4">{this.props.event.summary}</Card.Header>
           <Card.Body>
             <Card.Text className="location">
