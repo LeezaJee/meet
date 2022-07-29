@@ -95,6 +95,20 @@ test("list of 32 events by default", async () => {
   AppWrapper.unmount();
 });
 
+// INTEGRATION TEST 6
+test("App changes number of events when the NumberOfEvents component changes", async () => {
+  const AppWrapper = mount(<App />);
+  const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+  const locations = extractLocations(mockData);
+  NumberOfEventsWrapper.setState({
+    events: locations,
+    maxNumberOfEvents: 10,
+  });
+  NumberOfEventsWrapper.find(".default").simulate("change");
+  expect(NumberOfEventsWrapper.state("maxNumberOfEvents")).toEqual(10);
+  AppWrapper.unmount();
+});
+
 // ----------------- UNIT TESTING SCOPE -----------------
 describe("<App /> component", () => {
   let AppWrapper;
