@@ -39,10 +39,10 @@ class Event extends Component {
   render() {
     return (
       <div className="event-visible">
-        <Card className="event-card" bg="light" border="dark">
+        <Card className="summary" bg="light" border="dark">
           <Card.Header as="h4">{this.props.event.summary}</Card.Header>
           <Card.Body>
-            <Card.Text className="location">
+            <Card.Text className="start-date">
               {this.props.event.start.dateTime}
             </Card.Text>
             <Card.Text className="location">
