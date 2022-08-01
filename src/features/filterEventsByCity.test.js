@@ -3,6 +3,8 @@ import { mount, shallow } from "enzyme";
 import React from "react";
 import App from "../App";
 import { mockData } from "../mock-data";
+import CitySearch from "../CitySearch";
+import { extractLocations } from "../api";
 
 const feature = loadFeature("./src/features/filterEventsByCity.feature");
 
@@ -12,7 +14,7 @@ const feature = loadFeature("./src/features/filterEventsByCity.feature");
 
 defineFeature(feature, (test) => {
   <></>;
-  // Scenario 1
+  // SCENARIO 1
   test("When user hasn’t searched for a city, show upcoming events from all cities.", ({
     given,
     when,
@@ -30,6 +32,7 @@ defineFeature(feature, (test) => {
 
     then("the user should see the list of upcoming events.", () => {
       // the act of getting the list of events is an asynchronous action, so the first thing you need to do is update the App component
+      // without this, none of the changes will be displayed on the App component
       AppWrapper.update();
       expect(AppWrapper.find(".event-visible")).toHaveLength(mockData.length);
     });
