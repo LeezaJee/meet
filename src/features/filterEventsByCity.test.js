@@ -38,3 +38,37 @@ defineFeature(feature, (test) => {
     });
   });
 
+  // SCENARIO 2
+  test("User should see a list of suggestions when they search for a city", ({
+    given,
+    when,
+    then,
+  }) => {
+    let CitySearchWrapper;
+    given("the main page is open", () => {
+      const locations = extractLocations(mockData);
+      // you can use shallow() instead of mount() now because you don’t need to render any of CitySearch’s children
+      CitySearchWrapper = shallow(
+        <CitySearch updateEvents={() => {}} locations={locations} />
+      );
+    });
+
+    when("the user starts typing in the city textbox", () => {
+      // simulate() function is used to simulate the 'change' event on the city element
+      // why Berlin? the mock data you have currently only contains two cities—London and Berlin
+      CitySearchWrapper.find(".city").simulate("change", {
+        target: { value: "Berlin" },
+      });
+    });
+
+    then(
+      "the user should receive a list of cities (suggestions) that match what they’ve typed",
+      () => {
+        // when the user typed in “Berlin” in your unit tests, 2 were returned
+        // here, as well, you need to require two suggestions using the toHaveLength() matcher
+        // you included the option to “See all cities,” so this also needs to be counted
+        expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(2);
+      }
+    );
+  });
+
