@@ -210,6 +210,10 @@ input[type="number"] {
   margin-right: 30px;
 }
 
+.app-title {
+  margin-top: 10px;
+}
+
 .app-subtitle {
   margin-bottom: 40px;
 }
