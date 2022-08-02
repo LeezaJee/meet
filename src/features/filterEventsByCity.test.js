@@ -72,3 +72,57 @@ defineFeature(feature, (test) => {
     );
   });
 
+  // SCENARIO 3
+  test("User can select a city from the suggested list", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    // no longer do you simply need to open the app—now, the user needs to type “Berlin” into the city textbox
+    // this does require the app to be open, so you still need to render the App component
+    // however, you also need to simulate an event on the city textbox
+    let AppWrapper;
+    // given function in this test is an async function to allow your App component to properly load the events and locations first
+    given("user was typing “Berlin” in the city textbox", async () => {
+      // await makes JavaScript wait until that promise settles and returns its result
+      // App component is rendered using the mount() function as the test will require interaction with its child, the CitySearch
+      AppWrapper = await mount(<App />);
+      AppWrapper.find(".city").simulate("change", {
+        target: { value: "Berlin" },
+      });
+    });
+
+    // checks whether a list of suggested cities is showing
+    and("the list of suggested cities is showing", () => {
+      // update() ensures App component is updated after it receives the list of suggestions
+      AppWrapper.update();
+      // expect() function will necessitate a call to the API, which is asynchronous
+      expect(AppWrapper.find(".suggestions li")).toHaveLength(2);
+    });
+
+    when(
+      "the user selects a city (e.g., “Berlin, Germany”) from the list",
+      () => {
+        // simulating a 'click' event on the first suggestion, which, in this case, is “Berlin, Germany”
+        AppWrapper.find(".suggestions li").at(0).simulate("click");
+      }
+    );
+
+    then(
+      "their city should be changed to that city (i.e., “Berlin, Germany”)",
+      () => {
+        const CitySearchWrapper = AppWrapper.find(CitySearch);
+        expect(CitySearchWrapper.state("query")).toBe("Berlin, Germany");
+      }
+    );
+
+    and(
+      "the user should receive a list of upcoming events in that city",
+      () => {
+        // checks whether the number of events rendered in the App component are the same as those included in your “mock-events.js” file
+        expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+      }
+    );
+  });
+});
