@@ -121,7 +121,7 @@ defineFeature(feature, (test) => {
       "the user should receive a list of upcoming events in that city",
       () => {
         // checks whether the number of events rendered in the App component are the same as those included in your “mock-events.js” file
-        expect(AppWrapper.find(".event")).toHaveLength(mockData.length);
+        expect(AppWrapper.find(".event-visible")).toHaveLength(mockData.length);
       }
     );
   });
