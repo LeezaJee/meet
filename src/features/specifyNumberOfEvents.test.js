@@ -37,3 +37,32 @@ defineFeature(feature, (test) => {
     );
   });
 
+  // Scenario 2
+  test("The user can change the number of events they want to see.", ({
+    given,
+    when,
+    then,
+  }) => {
+    given("the user opened the search results query", () => {
+      AppWrapper.update();
+      expect(AppWrapper.find(".event-visible")).toHaveLength(2);
+    });
+
+    when("the user changes the default number", () => {
+      const eventNumber = { target: { value: 1 } };
+      NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      NumberOfEventsWrapper.setState({ events: locations, eventCount: 1 });
+      NumberOfEventsWrapper.find(".default").simulate("change", eventNumber);
+      expect(AppWrapper.find(".default").props().value).toEqual(1);
+      AppWrapper.update();
+    });
+
+    then(
+      "the default number of results will be changed to what the users select",
+      () => {
+        expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(1);
+        AppWrapper.unmount();
+      }
+    );
+  });
+});
