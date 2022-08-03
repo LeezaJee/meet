@@ -8,4 +8,4 @@
         Scenario: The user can change the number of events they want to see.
         Given the user opened the search results query
         When the user changes the default number
-        Then the default number of results will be changed to what the users select Footer
+        Then the default number of results will be changed to what the users select 
