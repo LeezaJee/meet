@@ -24,3 +24,11 @@ describe("show/hide event details", () => {
     expect(eventDetails).toBeNull();
   });
 
+  // SCENARIO 2
+  // END TO END TEST
+  test("User can expand an event to see its details", async () => {
+    await page.click(".event-visible .btn-details");
+    const eventDetails = await page.$(".event-visible .event-details");
+    expect(eventDetails).toBeDefined();
+  });
+
