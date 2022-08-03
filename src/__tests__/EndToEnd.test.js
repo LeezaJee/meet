@@ -17,3 +17,10 @@ describe("show/hide event details", () => {
     browser.close();
   });
 
+  // SCENARIO 1
+  // END TO END TEST
+  test("an event element is collapsed by default", async () => {
+    const eventDetails = await page.$(".event-visible .event-details");
+    expect(eventDetails).toBeNull();
+  });
+
