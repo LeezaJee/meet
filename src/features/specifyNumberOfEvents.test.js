@@ -6,3 +6,6 @@ import App from "../App";
 import { mockData } from "../mock-data";
 import NumberOfEvents from "../NumberOfEvents";
 
+const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
+const locations = extractLocations(mockData);
+
