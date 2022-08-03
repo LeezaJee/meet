@@ -26,3 +26,28 @@ defineFeature(feature, (test) => {
     );
   });
 
+  // Scenario 2
+  test("The user can expand an event to see its details.", ({
+    given,
+    when,
+    then,
+  }) => {
+    <></>;
+
+    given("the user is viewing a specific event", async () => {
+      AppWrapper = await mount(<App />);
+    });
+
+    when("the user selects the event", () => {
+      AppWrapper.update();
+      AppWrapper.find(".btn-details").at(0).simulate("click");
+    });
+
+    then(
+      "the details of that event will be listed for the user to view",
+      () => {
+        expect(AppWrapper.find(".event-details")).toHaveLength(1);
+      }
+    );
+  });
+
