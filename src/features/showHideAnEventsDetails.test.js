@@ -51,3 +51,23 @@ defineFeature(feature, (test) => {
     );
   });
 
+  // Scenario 3
+  test("The user can collapse an event to hide its details.", ({
+    given,
+    when,
+    then,
+  }) => {
+    <></>;
+    given("the event element is opened", () => {
+      expect(AppWrapper.find(".event-details")).toHaveLength(1);
+    });
+
+    when("the user closes the event element", () => {
+      AppWrapper.find(".btn-details").at(0).simulate("click");
+    });
+
+    then("the details are hidden", () => {
+      expect(AppWrapper.find(".event-details")).toHaveLength(0);
+    });
+  });
+});
