@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import * as atatus from "atatus-spa";
 
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
