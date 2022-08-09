@@ -15,14 +15,23 @@ class CitySearch extends Component {
   // filters the state of suggestions and uses the result as the state’s new value
   handleInputChanged = (event) => {
     const value = event.target.value;
-    // this.props.locations within the function because it'll be passed from the App component later
+    this.setState({ showSuggestions: true });
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    this.setState({
-      query: value,
-      suggestions,
-    });
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText:
+          "We can not find the city you are looking for. Please try another city",
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        infoText: "",
+      });
+    }
   };
 
   // making sure to pass the clicked suggestion to the passed updateEvents prop
