@@ -56,6 +56,25 @@ class App extends Component {
     });
   };
 
+  updateNumberEvents = (numberOfEvents) => {
+    this.setState({
+      numberOfEvents,
+    });
+    this.updateEvents(undefined, numberOfEvents);
+  };
+
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
+      const city = location.split(", ").shift();
+      return { city, number };
+    });
+    return data;
+  };
+
   render() {
     return (
       // passing states to components as a prop
@@ -71,7 +90,7 @@ class App extends Component {
         />
         <Container className="event-number">
           <NumberOfEvents
-            events={this.state.events}
+            numberOfEvents={this.state.numberOfEvents}
             updateEvents={this.updateEvents}
           />
         </Container>
