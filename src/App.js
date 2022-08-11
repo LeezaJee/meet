@@ -79,7 +79,7 @@ class App extends Component {
     return (
       // passing states to components as a prop
       <div className="App">
-        <h1 className="app-title">Welcome to Events for Friends!</h1>
+        <h1 className="app-title">Welcome to Events4Friends!</h1>
         <h4 className="app-subtitle">
           The next event is just around your corner.
         </h4>
