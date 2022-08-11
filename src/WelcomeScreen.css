@@ -1,18 +1,18 @@
-a {
+.a {
   text-decoration: none;
   color: white;
 }
-a:hover {
+.a:hover {
   text-decoration: underline;
   color: #ffffff;
 }
 
-h1 {
+.h1 {
   margin-top: 100px;
   margin-bottom: 40px;
 }
 
-h4 {
+.h4 {
   margin-bottom: 40px;
 }
 
