@@ -3,10 +3,10 @@ import "./App.css";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
-import { getEvents, extractLocations } from "./api";
-import { Container } from "react-bootstrap";
+import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import { OffLineAlert } from "./Alert";
 import "./nprogress.css";
+import WelcomeScreen from "./WelcomeScreen";
 
 class App extends Component {
   state = {
