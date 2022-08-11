@@ -85,6 +85,16 @@ class App extends Component {
           The next event is just around your corner.
         </h4>
 
+        <div className="offlineAlert">
+          {!navigator.onLine && (
+            <OffLineAlert
+              text={
+                "You are currently offline! The displayed events may not be up to date."
+              }
+            />
+          )}
+        </div>
+
         <CitySearch
           locations={this.state.locations}
           updateEvents={this.updateEvents}
@@ -96,15 +106,6 @@ class App extends Component {
           />
         </Container>
         <EventList events={this.state.events} />
-        <div className="offlineAlert">
-          {!navigator.onLine && (
-            <OffLineAlert
-              text={
-                "You are offline! The displayed events may not be up to date"
-              }
-            />
-          )}
-        </div>
       </div>
     );
   }
