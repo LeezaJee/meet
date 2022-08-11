@@ -96,7 +96,19 @@ export const getEvents = async () => {
     NProgress.done();
     return mockData;
   }
+  // navigator.onLine API checks whether a user is online and returns a boolean
+  // if it returns true (the user is online), the app will request data from the Google Calendar API
+  // however, if it returns false (the user is offline), the app will load the event list data stored in localStorage
+  if (!navigator.onLine) {
+    // !navigator.onLine checks whether the user is offline
+    // if they are offline, the stored event list is loaded, parsed, and returned as events
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(data).events : [];
+  }
 
+  // you don’t need to check for an access token if the user is offline
+  // that's why !navigator.onLine is put before const token
   const token = await getAccessToken(); // checks for an access token
 
   if (token) {
@@ -108,6 +120,8 @@ export const getEvents = async () => {
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
+      // JSON.stringify(events) function is necessary because events is a list, but localStorage can only store strings
+      // it will then need to be parsed later using the JSON.parse() function when it’s loaded from localStorage
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
       localStorage.setItem("locations", JSON.stringify(locations));
     }
