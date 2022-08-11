@@ -80,11 +80,6 @@ class App extends Component {
     return (
       // passing states to components as a prop
       <div className="App">
-        <div className="offlineAlert">
-          {!navigator.onLine && (
-            <OffLineAlert text={"You are currently offline!"} />
-          )}
-        </div>
         <h1 className="app-title">Welcome to Events4Friends!</h1>
         <h4 className="app-subtitle">
           The next event is just around your corner.
@@ -101,6 +96,15 @@ class App extends Component {
           />
         </Container>
         <EventList events={this.state.events} />
+        <div className="offlineAlert">
+          {!navigator.onLine && (
+            <OffLineAlert
+              text={
+                "You are offline! The displayed events may not be up to date"
+              }
+            />
+          )}
+        </div>
       </div>
     );
   }
