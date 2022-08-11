@@ -19,17 +19,24 @@ class App extends Component {
 
   // loads events when the app loads
   // makes the API call and saves the initial data to state
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        let sliceNumber = this.state.numberOfEvents;
-        this.setState({
-          locations: extractLocations(events),
-          events: events.slice(0, sliceNumber),
-        });
-      }
-    });
+    const accessToken = localStorage.getItem("access_token");
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          let sliceNumber = this.state.numberOfEvents;
+          this.setState({
+            locations: extractLocations(events),
+            events: events.slice(0, sliceNumber),
+          });
+        }
+      });
+    }
   }
 
   // to avoid the component being mounted, tested, and unmounted before the getEvents API call inside componentDidMount() has finished
