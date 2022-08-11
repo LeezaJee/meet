@@ -14,6 +14,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     locationSelected: "all",
+    showWelcomeScreen: undefined,
   };
 
   // loads events when the app loads
