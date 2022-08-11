@@ -15,7 +15,7 @@ export const extractLocations = (events) => {
 
 // if existing token was found in localStorage, it checks whether token is valid or not
 // if it’s not, then user is sent to the Google Authorization screen
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
