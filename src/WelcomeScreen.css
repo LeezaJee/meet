@@ -1,19 +1,20 @@
-a {
+.policy {
   text-decoration: none;
-  color: white;
+  color: yellow;
 }
-a:hover {
+
+.policy:hover {
   text-decoration: underline;
-  color: #ffffff;
+  color: yellow;
 }
 
-h1 {
-  margin-top: 100px;
-  margin-bottom: 40px;
+.heading1 {
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 
-h4 {
-  margin-bottom: 40px;
+.heading4 {
+  margin-bottom: 50px;
 }
 
 .WelcomeScreen {
@@ -22,6 +23,7 @@ h4 {
   height: 100%;
   top: 0;
   background: #141414;
+  font-family: "Play";
 }
 
 .login-button {
@@ -80,7 +82,7 @@ h4 {
   color: white;
   font-size: 14px;
   letter-spacing: 0.2px;
-  font-family: "Roboto";
+  font-family: "Play";
   background-color: inherit;
   text-align: center;
   cursor: pointer;
