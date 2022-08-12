@@ -86,8 +86,20 @@ class App extends Component {
   };
 
   render() {
+    console.log("show: ", this.state.showWelcomeScreen);
     if (this.state.showWelcomeScreen === undefined)
       return <div className="App" />;
+
+    if (this.state.showWelcomeScreen) {
+      return (
+        <WelcomeScreen
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
+      );
+    }
+
     return (
       // passing states to components as a prop
       <div className="App">
@@ -117,13 +129,6 @@ class App extends Component {
           />
         </Container>
         <EventList events={this.state.events} />
-
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
       </div>
     );
   }
