@@ -3,6 +3,7 @@ import "./App.css";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
+import { Container } from "react-bootstrap";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import { OffLineAlert } from "./Alert";
 import "./nprogress.css";
@@ -109,12 +110,12 @@ class App extends Component {
           locations={this.state.locations}
           updateEvents={this.updateEvents}
         />
-
-        <NumberOfEvents
-          numberOfEvents={this.state.numberOfEvents}
-          updateEvents={this.updateEvents}
-        />
-
+        <Container className="event-number">
+          <NumberOfEvents
+            numberOfEvents={this.state.numberOfEvents}
+            updateEvents={this.updateEvents}
+          />
+        </Container>
         <EventList events={this.state.events} />
 
         <WelcomeScreen
