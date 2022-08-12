@@ -90,10 +90,12 @@ class App extends Component {
     return (
       // passing states to components as a prop
       <div className="App">
-        <h1 className="app-title">Welcome to the Meet App!</h1>
-        <h4 className="app-subtitle">
-          The next event is just around your corner.
-        </h4>
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
 
         <div className="offlineAlert">
           {!navigator.onLine && (
@@ -104,6 +106,11 @@ class App extends Component {
             />
           )}
         </div>
+
+        <h1 className="app-title">Welcome to the Meet App!</h1>
+        <h4 className="app-subtitle">
+          The next event is just around your corner.
+        </h4>
 
         <CitySearch
           locations={this.state.locations}
@@ -116,13 +123,6 @@ class App extends Component {
         />
 
         <EventList events={this.state.events} />
-
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
       </div>
     );
   }
