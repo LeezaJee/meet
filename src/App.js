@@ -90,13 +90,6 @@ class App extends Component {
     return (
       // passing states to components as a prop
       <div className="App">
-        <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => {
-            getAccessToken();
-          }}
-        />
-
         <div className="offlineAlert">
           {!navigator.onLine && (
             <OffLineAlert
@@ -123,6 +116,13 @@ class App extends Component {
         />
 
         <EventList events={this.state.events} />
+
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
       </div>
     );
   }
