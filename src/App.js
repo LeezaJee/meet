@@ -49,7 +49,9 @@ class App extends Component {
   updateEvents = (location, maxNumberEvents) => {
     if (maxNumberEvents === undefined) {
       maxNumberEvents = this.state.numberOfEvents;
-    } else this.setState({ numberOfEvents: maxNumberEvents });
+    } else {
+      this.setState({ numberOfEvents: maxNumberEvents });
+    }
     if (location === undefined) {
       location = this.state.locationSelected;
     }
