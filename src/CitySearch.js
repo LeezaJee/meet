@@ -57,6 +57,9 @@ class CitySearch extends Component {
           onFocus={() => {
             this.setState({ showSuggestions: true });
           }}
+          onBlur={() => {
+            this.setState({ showSuggestions: false });
+          }}
         />
         <ul
           className="suggestions"
