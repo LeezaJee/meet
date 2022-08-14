@@ -59,6 +59,7 @@ class CitySearch extends Component {
           }}
           onBlur={() => {
             this.setState({ showSuggestions: false });
+            console.log("from onBlur", this.state);
           }}
         />
         <ul
