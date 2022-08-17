@@ -8,6 +8,15 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import { OffLineAlert } from "./Alert";
 import "./nprogress.css";
 import WelcomeScreen from "./WelcomeScreen";
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 class App extends Component {
   state = {
