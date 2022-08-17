@@ -140,7 +140,7 @@ class App extends Component {
           />
         </Container>
 
-        <h2>Events in each city:</h2>
+        <h2>Number of Events in each city:</h2>
 
         <ResponsiveContainer height={400}>
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
