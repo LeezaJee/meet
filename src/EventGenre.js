@@ -4,6 +4,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([]);
 
+  const COLORS = ["#204051", "#392F2C", "#2C3639", "#3B6978", "#C74B50"];
+
   const getData = () => {
     const genres = ["React", "JavaScript", "Node", "jQuery", "AngularJS"];
 
@@ -40,7 +42,12 @@ const EventGenre = ({ events }) => {
           outerRadius={80}
           fill="#8884d8"
           dataKey="value"
-        ></Pie>
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+          >
+        </Pie>
       </PieChart>
     </ResponsiveContainer>
   );
