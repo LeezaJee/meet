@@ -15,6 +15,12 @@ import { PieChart, Pie, ResponsiveContainer } from "recharts";
     });
     return data;
   };
+
+  useEffect(() => {
+    setData(() => getData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [events]);
+
   return (
     <ResponsiveContainer height={400}>
       <PieChart width={400} height={400}>
