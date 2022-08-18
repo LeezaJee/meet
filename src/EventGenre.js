@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 
+  const getData = () => {
+    const genres = ["React", "JavaScript", "Node", "jQuery", "AngularJS"];
+
+    const data = genres.map((genre) => {
+      const value = events.filter((event) =>
+        event.summary.replace(".js", "").split(" ").includes(genre)
+      ).length;
+      return {
+        name: genre,
+        value: value,
+      };
+    });
+    return data;
+  };
   return (
     <ResponsiveContainer height={400}>
       <PieChart width={400} height={400}>
