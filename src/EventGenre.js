@@ -40,7 +40,7 @@ const EventGenre = ({ events }) => {
             }
           }}
           outerRadius={80}
-          fill="#8884d8"
+          fill="#ffc107"
           dataKey="value"
         >
           {data.map((entry, index) => (
