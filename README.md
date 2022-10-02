@@ -1,68 +1,144 @@
-# Meetup
+# Meet App
 
-## Description
+a serverless, progressive web application (PWA) built with React using a
+test-driven development (TDD) technique. The application uses the Google
+Calendar API to fetch upcoming events.
 
-This app provides a list of upcoming events for any given city, with data provided by Google Calendar. The app works offline using cached data from the last time it was used online. The user can serach for events in a specific city or browse all events, customize how many events are shown on screen, click an event for more details, and see how many events are upcoming in certain cities.
-User stories
 
-### Feature 1
+## Installation
 
-As a user, I should be able to filter events by city so that I can see the list of events that take place in that city.
+Install dependencies for meet with npm
 
-### Feature 2
+```bash
+  git clone https://github.com/LeezaJee/meet.git
+  cd meet
+  npm install
+  
+```
+    
+### Dependencies
+**For Development**
+- React
+- React Bootstrap
+- Recharts (for Data Visualization)
 
-As a user, I should be able to show/hide event details so that I can can see more or less information about an event without being overwhelmed by clutter.
+**For Testing**
+- Jest
+- Jest cucumber (ntegration Testing)
+- Puppeteer (End-To-End-Testing)
+- Enzyme
+- Enzyme Adapter React 17
+- Atatus browser testing
 
-### Feature 3
+**Serverless**
 
-As a user, I should be able to specify the number of events so I can control how many events are displayed on my screen, whether it's many or few.
+AWS Lambda was utilized to 
+- generate a token.
+- pass it to the application after request
 
-### Feature 4
 
-As a user, I should be able to use the app when offline so that my use is not disrupted without an internet connection, and I can more easily use the app on the go.
+## Deployment
 
-### Feature 5
+The app is deployed to github pages.
 
-As a user, I should be able to visualize data so that it is easier to understand and process the information I am receiving on screen.
+To deploy this project run
 
-## Scenarios
+```bash
+  npm run deploy
+```
 
-### Feature 1
 
-Given that the user hasn’t searched for any city, when the user opens the app, then the user should see a list of all upcoming events.
+## Features
 
-Given that the main page is open, when the user starts typing in the city textbox, then the user should see a list of cities (suggestions) that match what they’ve typed.
+Scenarios are written for **Unit and Integration Testing**.
+For **Behavioral Driven Development** ('BDD' in the features folder) the chosen syntax is *Gherkin* (given, when, then)
 
-Given that the user was typing “Berlin” in the city textbox and the list of suggested cities is showing, when the user selects a city (e.g., “Berlin, Germany”) from the list, then their city should be changed to that city (i.e., “Berlin, Germany”) and the user should receive a list of upcoming events in that city.
+### Feature 1: Filter events by city
+_As a user, I would like to be able to filter events by city so that I can see the list of events that take place in that city._
 
-### Feature 2
+**Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities**
 
-Given that the app has not yet been opened, when the user opens the app, then all event elements should be collapsed.
+-   **Given** the user hasn’t searched for any city
+-   **When** the user opens the app
+-   **Then** the user should see all upcoming events as a list
 
-Given that an event's details are hidden, when the user clicks on that event, then more details about that event should be shown.
+**Scenario 2: User should see a list of suggestions when they search for a city**
 
-Given that an event's details are shown, when the user clicks on that event, then the details should be hidden.
+-   **Given** the main page was open
+-   **When** the user starts typing in the city textbox
+-   **Then** the user should see a list of cities that match the typed text
 
-### Feature 3
+**Scenario 3: User can select a city from the suggested list**
 
-Given that the app has not yet been opened, when the user opens the app, then 32 events should be shown on screen.
+-   **Given** the user typed city “Berlin”
+-   **When** the user selects the city from the list
+-   **Then** the city should change to that city and the user should see a list of upcoming events in that city
 
-Given that the main page is open, when the user enters a number (e.g., 10), then that number of events (i.e., 10) should be shown on screen.
+### Feature 2: Show/hide event details
+_As a user, I would like to be able to show/hide event details so that I can see more/less information about an event._
 
-### Feature 4
+**Scenario 1: An event element is collapsed by default**
+-   **Given** the city page was open
+-   **When** the user didn’t select any event
+-   **Then** the user should see a collapsed event
 
-Given that there is no internet connection, when the user opens the app/continues to use it, then cached data from last usage should still be available and interaction with that data should be seamless.
+**Scenario 2: User can expand an event to see details**
+-   **Given** the user found an event
+-   **When** the user clicks on the button/link of the specific event
+-   **Then** the user should see the expanded details of the event
 
-Given that there is no internet connection, when the user changes the settings, then an error message should pop up.
+**Scenario 3: User can collapse an event to hide its details**
+-   **Given** the event details are expanded
+-   **When** the user closes the details
+-   **Then** the user can collapse the elements details
 
-### Feature 5
+### Feature 3: Specify number of events
+_As a user, I would like to be able to specify the number of events I want to view in the app so that I can see more or fewer events in the events list at once._
 
-Given that there are some upcoming events in a given city, when the user views events for that city, then there should be a chart with the number of upcoming events for that city.
+**Scenario 1: Default number is 12 when user hasn’t specified**
 
-## Dependencies
+-   **Given** the user sees a list of events
+-   **When** the user hasn’t specified a number of events
+-   **Then** the user should see a list 12 events by default
 
-React
+**Scenario 2: User can change the number of events to see**
 
-## API
+-   **Given** the user sees a list of events
+-   **When** the user specified a number of events he wants to see
+-   **Then** the user should see a the specified number of events
 
-This app used the Google Calendar API to fetch information about upcoming events by location.
+### Feature 4: Use the app when offline
+_As a user, I would like to be able to use the app when offline so that I can see the events I viewed the last time I was online._
+
+**Scenario 1: show cached data when there is no internet connection**
+
+-   **Given** the user is offline
+-   **When** the user opens the app
+-   **Then** the user should see cached data from the last time being online
+
+**Scenario 2: Show error when user changes the settings**
+
+-   **Given** the user is offline
+-   **When** the user changes settings e.g the city
+-   **Then** the user should see an error message
+
+### Feature 5: Data visualization
+_As a user, I would like to be able to see a chart showing the upcoming events in each city so that I know what events are organized in which city._
+
+**Scenario : Show a chart showing the upcoming events in each city**
+
+-   **Given** the main page is open
+-   **When** the user hasn’t specified a city
+-   **Then** the user should see the number of events in each city displayed
+
+
+
+## Screenshots
+
+<img src="public/meet-app.png" height="400" width="800" >
+<img src="public/meet-app2.png" height="400" width="800" >
+
+
+## Demo
+
+Access the Meet App using [this]( https://t-schill-dev.github.io/meet-app/) project link
