@@ -16,7 +16,7 @@ Install dependencies for meet with npm
   
 ```
     
-### Dependencies
+## Dependencies
 **For Development**
 - React
 - React Bootstrap
@@ -53,6 +53,7 @@ To deploy this project run
 Scenarios are written for **Unit and Integration Testing**.
 For **Behavioral Driven Development** ('BDD' in the features folder) the chosen syntax is *Gherkin* (given, when, then)
 
+
 ### Feature 1: Filter events by city
 _As a user, I would like to be able to filter events by city so that I can see the list of events that take place in that city._
 
@@ -74,6 +75,7 @@ _As a user, I would like to be able to filter events by city so that I can see t
 -   **When** the user selects the city from the list
 -   **Then** the city should change to that city and the user should see a list of upcoming events in that city
 
+
 ### Feature 2: Show/hide event details
 _As a user, I would like to be able to show/hide event details so that I can see more/less information about an event._
 
@@ -92,6 +94,7 @@ _As a user, I would like to be able to show/hide event details so that I can see
 -   **When** the user closes the details
 -   **Then** the user can collapse the elements details
 
+
 ### Feature 3: Specify number of events
 _As a user, I would like to be able to specify the number of events I want to view in the app so that I can see more or fewer events in the events list at once._
 
@@ -107,6 +110,7 @@ _As a user, I would like to be able to specify the number of events I want to vi
 -   **When** the user specified a number of events he wants to see
 -   **Then** the user should see a the specified number of events
 
+
 ### Feature 4: Use the app when offline
 _As a user, I would like to be able to use the app when offline so that I can see the events I viewed the last time I was online._
 
@@ -121,6 +125,7 @@ _As a user, I would like to be able to use the app when offline so that I can se
 -   **Given** the user is offline
 -   **When** the user changes settings e.g the city
 -   **Then** the user should see an error message
+
 
 ### Feature 5: Data visualization
 _As a user, I would like to be able to see a chart showing the upcoming events in each city so that I know what events are organized in which city._
