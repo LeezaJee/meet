@@ -158,4 +158,4 @@ _As a user, I would like to be able to see a chart showing the upcoming events i
 
 ## Demo
 
-Access the Meet App using [this]( https://t-schill-dev.github.io/meet-app/) project link
+You can access the Meet App using [this]( https://LeezaJee.github.io/meet/) Project link.
