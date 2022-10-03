@@ -4,6 +4,7 @@ a serverless, progressive web application (PWA) built with React using a
 test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.
 
+<br>
 
 ## Installation
 
@@ -15,8 +16,11 @@ Install dependencies for meet with npm
   npm install
   
 ```
-    
+   
+<br>
+
 ## Dependencies
+
 **For Development**
 - React
 - React Bootstrap
@@ -36,6 +40,7 @@ AWS Lambda was utilized to
 - generate a token.
 - pass it to the application after request
 
+<br>
 
 ## Deployment
 
@@ -47,12 +52,14 @@ To deploy this project run
   npm run deploy
 ```
 
+<br>
 
 ## Features
 
 Scenarios are written for **Unit and Integration Testing**.
 For **Behavioral Driven Development** ('BDD' in the features folder) the chosen syntax is *Gherkin* (given, when, then)
 
+<br>
 
 ### Feature 1: Filter events by city
 _As a user, I would like to be able to filter events by city so that I can see the list of events that take place in that city._
@@ -75,6 +82,7 @@ _As a user, I would like to be able to filter events by city so that I can see t
 -   **When** the user selects the city from the list
 -   **Then** the city should change to that city and the user should see a list of upcoming events in that city
 
+<br> 
 
 ### Feature 2: Show/hide event details
 _As a user, I would like to be able to show/hide event details so that I can see more/less information about an event._
@@ -94,6 +102,7 @@ _As a user, I would like to be able to show/hide event details so that I can see
 -   **When** the user closes the details
 -   **Then** the user can collapse the elements details
 
+<br>
 
 ### Feature 3: Specify number of events
 _As a user, I would like to be able to specify the number of events I want to view in the app so that I can see more or fewer events in the events list at once._
@@ -110,6 +119,7 @@ _As a user, I would like to be able to specify the number of events I want to vi
 -   **When** the user specified a number of events he wants to see
 -   **Then** the user should see a the specified number of events
 
+<br>
 
 ### Feature 4: Use the app when offline
 _As a user, I would like to be able to use the app when offline so that I can see the events I viewed the last time I was online._
@@ -126,6 +136,7 @@ _As a user, I would like to be able to use the app when offline so that I can se
 -   **When** the user changes settings e.g the city
 -   **Then** the user should see an error message
 
+<br>
 
 ### Feature 5: Data visualization
 _As a user, I would like to be able to see a chart showing the upcoming events in each city so that I know what events are organized in which city._
@@ -136,13 +147,14 @@ _As a user, I would like to be able to see a chart showing the upcoming events i
 -   **When** the user hasn’t specified a city
 -   **Then** the user should see the number of events in each city displayed
 
-
+<br>
 
 ## Screenshots
 
 <img src="public/meet-app.png" height="400" width="800" >
 <img src="public/meet-app2.png" height="400" width="800" >
 
+<br>
 
 ## Demo
 
